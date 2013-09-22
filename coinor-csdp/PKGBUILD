@@ -32,7 +32,7 @@ depends=('blas' 'lapack')
 makedepends=('lapack' 'blas')
 options=('!libtool')
 source=(http://www.coin-or.org/download/source/Csdp/Csdp-${pkgver}.tgz)
-sha1sums=('b57053c70be074101e192459abf13a3cec13587d')
+sha512sums=('ba5dc0faea223bad6293f131ee63daee0a395a6e84c76fe108dbbefb3ab0696b2a59f435766c78a2d22244801a9abda2719798cbfe30dd9e1c32317e0283fd2e')
 
 build() {
   cd "${srcdir}/Csdp-${pkgver}"
