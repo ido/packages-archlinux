@@ -1,5 +1,9 @@
 # $Id$
 # Maintainer: Ido Rosen <ido@kernel.org>
+#
+# NOTE: To request changes to this package, please submit a pull request
+#       to the GitHub repository at https://github.com/ido/packages-archlinux
+#       Otherwise, open a GitHub issue.  Thank you! -Ido
 # 
 # CSDP is a C library for Semidefinite Programming (SDP) retrieved from:
 #   https://projects.coin-or.org/Csdp/
