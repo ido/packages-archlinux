@@ -12,7 +12,7 @@ pkgbase=linux-tresor        # Build stock -ARCH kernel with TRESOR patches
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-3.11
 pkgname=linux-tresor
-pkgdesc="The ${pkgbase/linux/Linux} kernel and modules - stable longtime supported with integrated TRESOR"
+pkgdesc="The Linux longterm stable kernel and modules with integrated TRESOR."
 pkgver=3.11.2
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -33,7 +33,8 @@ source=("http://www.kernel.org/pub/linux/kernel/v3.x/${_srcname}.tar.xz"
         '3.11-haswell-intel_pstate.patch'
         'http://www1.informatik.uni-erlangen.de/filepool/projects/tresor/tresor-patch-3.8.2_aesni'
         'http://www1.informatik.uni-erlangen.de/filepool/projects/tresor/tresor_sysfs.c'
-        'patch-for-tresor-patch-3.8.2_aesni.patch')
+        'patch-for-tresor-patch-3.8.2_aesni.patch'
+        'second-patch-for-tresor-patch-3.8.2_aesni.patch')
 sha512sums=('b3680d3a45a7308383cf8634a7f1908e94f6e1c6d1cb587332a9418a95fb93bd3c73ab70c6976c7330508d7c8c6b0f43c2a9a2efde5fe1f76e9bfffb1de5686c'
             'd37746a03b08972cef464ed13cd46fe19f2fd020ec7df97a087450bba37466500e8f197d031b51a30cfdfcd82b307998616e5387583bfeeca74253d83c738ba7'
             'e8ed7c1ebe17567e3266907e10f9543f7c1826675f55c575635ccc56806b743b5436e4e00cf69345876bcc2019476e1aa38c7283095d35b8e1b6876b012d91c1'
@@ -46,7 +47,8 @@ sha512sums=('b3680d3a45a7308383cf8634a7f1908e94f6e1c6d1cb587332a9418a95fb93bd3c7
             '4797b26dc1424b51aca8005a83eea6ececeefabe3193d99f9add3ac4fe282dc2bf6b28a3dc8f6bbf93aa5c34812a1776fca970892f0320c028192a4b3d0284c8'
             'ceaf4952e1a8847ebbbbd59ab55af601a0a2279d3af4763309e45eb5af50f225ba024559f8fdfc7f4342ab62c676e590c14111f0ace378ff7b3efcc76460d877'
             'd48c9e62e23f8e56f736f695ef7d8c343a848566de4e243adf45c9893988355de3a066b70b3096bebbdd4023ed102e7fc68d8f930e42b13ee1d91bb0098f5791'
-            '1d3f160f4a0745759dc4c564b3ab300abcb842f90804dec04a08b3700893f90b94cc15f3d7eafefd5af9a2dd910ed230d6bde5b6b9f5b7c156b4c03bab55aad3')
+            '1d3f160f4a0745759dc4c564b3ab300abcb842f90804dec04a08b3700893f90b94cc15f3d7eafefd5af9a2dd910ed230d6bde5b6b9f5b7c156b4c03bab55aad3'
+            'bc68664177f172a1565f53aabc9bc531f83e704dde24834cbc51e74ea5118652e4b5b62316fdf364e74f4687650dcb8653fbdeb983186763e20fbf68db31e681')
 
 _kernelname=${pkgbase#linux}
 
@@ -87,6 +89,7 @@ prepare() {
   # TRESOR Runs Encryption Securely Outside RAM
   # (i.e. the purpose of this package :-)
   patch --follow-symlinks -o "${srcdir}/tresor-patched-patch.patch" -i "${srcdir}/patch-for-tresor-patch-3.8.2_aesni.patch" "${srcdir}/tresor-patch-3.8.2_aesni"
+  patch --follow-symlinks  -i "${srcdir}/second-patch-for-tresor-patch-3.8.2_aesni.patch" "${srcdir}/tresor-patched-patch.patch"
   patch -p1 -i "${srcdir}/tresor-patched-patch.patch"
 
   if [ "${CARCH}" = "x86_64" ]; then
@@ -148,7 +151,7 @@ build() {
 }
 
 _package() {
-  pkgdesc="The ${pkgbase/linux/Linux} kernel and modules - stable longtime supported with integrated TRESOR"
+  true && pkgdesc="The ${pkgbase/linux/Linux} kernel and modules - stable longtime supported with integrated TRESOR"
   [ "${pkgbase}" = "linux" ] && groups=('base')
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
@@ -216,7 +219,7 @@ _package() {
 }
 
 _package-headers() {
-  pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
+  true && pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   provides=("kernel26${_kernelname}-headers=${pkgver}")
   conflicts=("kernel26${_kernelname}-headers")
   replaces=("kernel26${_kernelname}-headers")
@@ -356,7 +359,7 @@ _package-headers() {
 }
 
 _package-docs() {
-  pkgdesc="Kernel hackers manual - HTML documentation that comes with the ${pkgbase/linux/Linux} kernel"
+  true && pkgdesc="Kernel hackers manual - HTML documentation that comes with the ${pkgbase/linux/Linux} kernel"
   provides=("kernel26${_kernelname}-docs=${pkgver}")
   conflicts=("kernel26${_kernelname}-docs")
   replaces=("kernel26${_kernelname}-docs")
