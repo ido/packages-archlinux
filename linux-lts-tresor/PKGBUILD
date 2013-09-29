@@ -11,6 +11,7 @@
 pkgbase=linux-lts-tresor    # Build stock -lts kernel with TRESOR patches
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-3.10
+pkgname=linux-lts-tresor # placeholder
 pkgver=3.10.13
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -362,7 +363,8 @@ _package-docs() {
   rm -f "${pkgdir}/usr/src/linux-${_kernver}/Documentation/DocBook/Makefile"
 }
 
-pkgname=("${pkgbase}" "${pkgbase}-headers" "${pkgbase}-docs")
+# true && is a workaround for AUR problem with split packages:
+true && pkgname=("${pkgbase}" "${pkgbase}-headers" "${pkgbase}-docs")
 for _p in ${pkgname[@]}; do
   eval "package_${_p}() {
     _package${_p#${pkgbase}}
