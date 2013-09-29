@@ -12,6 +12,7 @@ pkgbase=linux-tresor        # Build stock -ARCH kernel with TRESOR patches
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-3.11
 pkgname=linux-tresor
+pkgdesc="The ${pkgbase/linux/Linux} kernel and modules - stable longtime supported with integrated TRESOR"
 pkgver=3.11.2
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -45,7 +46,7 @@ sha512sums=('b3680d3a45a7308383cf8634a7f1908e94f6e1c6d1cb587332a9418a95fb93bd3c7
             '4797b26dc1424b51aca8005a83eea6ececeefabe3193d99f9add3ac4fe282dc2bf6b28a3dc8f6bbf93aa5c34812a1776fca970892f0320c028192a4b3d0284c8'
             'ceaf4952e1a8847ebbbbd59ab55af601a0a2279d3af4763309e45eb5af50f225ba024559f8fdfc7f4342ab62c676e590c14111f0ace378ff7b3efcc76460d877'
             'd48c9e62e23f8e56f736f695ef7d8c343a848566de4e243adf45c9893988355de3a066b70b3096bebbdd4023ed102e7fc68d8f930e42b13ee1d91bb0098f5791'
-            '2c8d02a2a1ddacf111759b0af0f931a07006ee45d6f3d02e33122a98c3b06aa4d8a8019330273e801f3fcbaec69d72c7b1f9f82d18f0c3beae4810bf4043a52a')
+            '1d3f160f4a0745759dc4c564b3ab300abcb842f90804dec04a08b3700893f90b94cc15f3d7eafefd5af9a2dd910ed230d6bde5b6b9f5b7c156b4c03bab55aad3')
 
 _kernelname=${pkgbase#linux}
 
