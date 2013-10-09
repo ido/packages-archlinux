@@ -7,7 +7,7 @@
 #       Otherwise, open a GitHub issue.  Thank you! -Ido
 # 
 
-pkgname=bmon
+pkgname="bmon-git"
 pkgver=d47fffc
 pkgrel=1
 pkgdesc="Portable bandwidth monitor and rate estimator"
@@ -18,16 +18,19 @@ depends=('ncurses' 'confuse')
 makedepends=()
 source=('git+https://github.com/tgraf/bmon.git')
 sha512sums=('SKIP')
+provides=('bmon')
+replaces=('bmon')
+conflicts=('bmon')
 
 pkgver() {
-  cd "${srcdir}/${pkgname}"
+  cd "${srcdir}/${pkgname//-git/}"
 
   local ver="$(git describe --long --always --dirty)"
   printf "%s" "${ver//-/.}"
 }
 
 build() {
-  cd "${srcdir}/${pkgname}"
+  cd "${srcdir}/${pkgname//-git/}"
 
   ./autogen.sh
   ./configure --prefix=/usr --mandir=/usr/share/man --disable-asound
@@ -35,7 +38,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/${pkgname}"
+  cd "${srcdir}/${pkgname//-git/}"
 
   make DESTDIR="${pkgdir}" install
 
