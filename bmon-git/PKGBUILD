@@ -8,7 +8,7 @@
 # 
 
 pkgname="bmon-git"
-pkgver=d47fffc
+pkgver=v3.2.0.gd47fffc
 pkgrel=1
 pkgdesc="Portable bandwidth monitor and rate estimator"
 arch=('i686' 'x86_64')
@@ -25,8 +25,20 @@ conflicts=('bmon')
 pkgver() {
   cd "${srcdir}/${pkgname//-git/}"
 
-  local ver="$(git describe --long --always --dirty)"
+  if [ -n "${BMON_VERSION}" ]; then
+    git checkout "${BMON_VERSION}"
+  fi
+
+  local ver="$(git describe --tags --long --always --dirty)"
   printf "%s" "${ver//-/.}"
+}
+
+prepare() {
+  cd "${srcdir}/${pkgname//-git/}"
+
+  if [ -n "${BMON_VERSION}" ]; then
+    git checkout "${BMON_VERSION}"
+  fi
 }
 
 build() {
