@@ -20,7 +20,7 @@ pkgname='openonload'
 pkgdesc="A high performance network stack from Solarflare."
 pkgver='201310'
 _kernelver="$(uname -r)"
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.openonload.org/'
 license=('custom')
@@ -68,6 +68,9 @@ package() {
 
   install -Dm755 scripts/onload_install \
                                   "${pkgdir}/lib/onload/onload_install"
+
+  install -Dm644 "${srcdir}/openonload.service" \
+                                  "${pkgdir}/usr/lib/systemd/system/openonload.service"
 
   # Install documentation:
   install -dm755                  "${pkgdir}/usr/share/doc/openonload"
