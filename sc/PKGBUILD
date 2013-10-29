@@ -1,6 +1,11 @@
 # Maintainer: Army <uli_armbruster@web.de>
 # Contributor: Jay Tanzman <jay at jt512 dot dynddns dot ort>
 # Contributor: Ray Kohler <ataraxia937 at gmail dot com>
+#
+# NOTE: To request changes to this package, please submit a pull request
+#       to the GitHub repository at https://github.com/ido/packages-archlinux
+#       Otherwise, open a GitHub issue.  Thank you! -Ido
+#
 pkgname=sc
 pkgver=7.16
 pkgrel=4

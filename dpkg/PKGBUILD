@@ -5,6 +5,11 @@
 # Contributor: seblu <seblu+arch (at) seblu.net>
 # Contributor: squiddo <squiddo (at) intheocean.net>
 # Contributor: dront78 <dront78 (at) gmail.com>
+#
+# NOTE: To request changes to this package, please submit a pull request
+#       to the GitHub repository at https://github.com/ido/packages-archlinux
+#       Otherwise, open a GitHub issue.  Thank you! -Ido
+#
 pkgname=dpkg
 pkgver=1.16.12
 pkgrel=1
