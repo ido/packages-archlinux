@@ -8,7 +8,7 @@
 #       Otherwise, open a GitHub issue.  Thank you! -Ido
 #
 
-pkgname=duplicity
+pkgname=duplicity-bzr
 pkgver=930
 pkgrel=1
 pkgdesc='A utility for encrypted, bandwidth-efficient backups using the rsync algorithm.'
@@ -59,7 +59,7 @@ package() {
   python2 setup.py install --root="${pkgdir}" --optimize=1
 
   # fix broken documentation permissions until upstream does (FS#27301)
-  chmod 644 "${pkgdir}/usr/share/man/man1/${pkgname}.1"
+  chmod 644 "${pkgdir}/usr/share/man/man1/${pkgname//-bzr/}.1"
   chmod 644 "${pkgdir}/usr/share/man/man1/rdiffdir.1"
   chmod 644 "${pkgdir}/usr/share/doc/${pkgname//-bzr/}-${pkgver}"/*
 }
