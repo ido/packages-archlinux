@@ -1,9 +1,15 @@
 # $Id$
-# Maintainer: Kaiting Chen <kaitocracy@gmail.com>
+# Maintainer: Ido Rosen <ido@kernel.org>
+# Contributor: Kaiting Chen <kaitocracy@gmail.com>
 # Contributor: Aaron Schaefer <aaron@elasticdog.com>
+#
+# NOTE: To request changes to this package, please submit a pull request
+#       to the GitHub repository at https://github.com/ido/packages-archlinux
+#       Otherwise, open a GitHub issue.  Thank you! -Ido
+#
 
 pkgname=duplicity
-pkgver=0.6.22
+pkgver=930
 pkgrel=1
 pkgdesc='A utility for encrypted, bandwidth-efficient backups using the rsync algorithm.'
 arch=('i686' 'x86_64')
@@ -18,12 +24,27 @@ optdepends=('lftp: FTPS backend'
             'python2-httplib2: Ubuntu One backend'
             'python2-oauthlib: Ubuntu One backend'
             'rsync: rsync backend')
-source=("http://savannah.nongnu.org/download/$pkgname/$pkgname-$pkgver.tar.gz"{,.sig})
-md5sums=('5b035359a6bb7b2f3f3b9829c6c071e1'
-         'SKIP')
+source=(bzr+lp:duplicity)
+sha512sums=('SKIP')
+#_bzrtrunk='https://code.launchpad.net/~duplicity-team/duplicity/trunk'
+#_bzrmod=${pkgname}
+conflicts=("${pkgname//-bzr/}")
+
+pkgver() {
+  cd "${srcdir}/${pkgname//-bzr/}"
+  bzr revno
+}
+
+prepare() {
+  cd "${srcdir}/${pkgname//-bzr/}"
+
+  python2 dist/makedist ${pkgver}
+  tar -C "${srcdir}" -xf \
+      "${srcdir}/${pkgname//-bzr/}/${pkgname//-bzr/}-${pkgver}.tar.gz"
+}
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname//-bzr/}-${pkgver}"
 
   # python2 fix
   for file in $(find . -name '*.py' -print); do
@@ -33,12 +54,12 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname//-bzr/}-${pkgver}"
   
-  python2 setup.py install --root="$pkgdir" --optimize=1
+  python2 setup.py install --root="${pkgdir}" --optimize=1
 
   # fix broken documentation permissions until upstream does (FS#27301)
-  chmod 644 "$pkgdir/usr/share/man/man1/$pkgname.1"
-  chmod 644 "$pkgdir/usr/share/man/man1/rdiffdir.1"
-  chmod 644 "$pkgdir/usr/share/doc/$pkgname-$pkgver"/*
+  chmod 644 "${pkgdir}/usr/share/man/man1/${pkgname}.1"
+  chmod 644 "${pkgdir}/usr/share/man/man1/rdiffdir.1"
+  chmod 644 "${pkgdir}/usr/share/doc/${pkgname//-bzr/}-${pkgver}"/*
 }
