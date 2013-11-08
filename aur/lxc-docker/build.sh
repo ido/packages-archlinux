@@ -1,7 +1,7 @@
 #!/bin/env bash
+
 sudo -u vagrant yaourt -Syu --noconfirm
+sudo -u vagrant yaourt -S --noconfirm --needed rsync aufs3 bridge-utils lxc
+
 cd /vagrant
-sudo -u vagrant yaourt -S --noconfirm --needed rsync
-sudo -u vagrant yaourt -S --noconfirm --needed aufs3
-sudo -u vagrant yaourt -S --noconfirm --needed lxc bridge-utils
 sudo -u vagrant makepkg -s
