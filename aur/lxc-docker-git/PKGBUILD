@@ -35,7 +35,7 @@ conflicts=('lxc-docker')
 replaces=('dotcloud-docker-git')
 sha1sums=(
   'SKIP'
-  'b040b6fa5465a4ded3239c58bdcc0195a0d196f0'
+  'c7bb2145be7bda39953e8c343bb3f1857acb2d39'
   '39a363b43cee73eecae8b74c7cd7d5017f41c523'
 )
 epoch=1
