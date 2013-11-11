@@ -1,0 +1,5 @@
+post_install() {
+	echo "To make Docker fully functional, consider performing the following actions:"
+	echo "  + Enable IPv4 forwarding to allow internet connections inside the containers."
+	echo "    See /etc/sysctl.d/docker.conf for WARNING and instructions."
+}
