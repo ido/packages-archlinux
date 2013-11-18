@@ -1,7 +1,6 @@
 # $Id$
 # Maintainer: Ido Rosen <ido@kernel.org>
 # Contributor: Marcel Wysocki <maci@satgnu.net>
-# Contributor: Ramkumar Ramachandra <artagnon@gmail.com>
 #
 # NOTE: To request changes to this package, please submit a pull request
 #       to the GitHub repository at https://github.com/ido/packages-archlinux
@@ -31,13 +30,15 @@ source=(
     'docker::git+https://github.com/dotcloud/docker.git#branch=v0.7.0-rc4'
     'docker.service'
     'docker.sysctl'
+    'docker.install'
 )
 conflicts=('lxc-docker')
 replaces=('dotcloud-docker-git')
-sha1sums=(
+sha512sums=(
   'SKIP'
-  'c7bb2145be7bda39953e8c343bb3f1857acb2d39'
-  '39a363b43cee73eecae8b74c7cd7d5017f41c523'
+  '22263e73659e5aee6de760a670a9a1808f9e00a5e9a315c166eba40f88e1fa8596e1cace50b8463ea996f3a6a6567320c9b9e16f1c711b3b0b76c19011d9c1e6'
+  'bf2fc17d038d392c87ef4ee49f3251ad753b98cf01996153bd8b161db06c3b295f3022985cda003c3567195f5be58e78deffa599d97dab4f74aa9cf201f79310'
+  '75421cf8a4d46e53126e93011d44ef97cc7de58c9bfe53edb5e28bd8de779f4232aad28381f217b8cd6ec3cb1442ec250608a365ca9a4a2ce352db16d4beec9e'
 )
 epoch=1
 
