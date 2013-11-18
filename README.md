@@ -32,12 +32,12 @@ Send pull requests to this repository: https://github.com/ido/packages-archlinux
 
 I would like to see these packages move into `[community]`:
 
-[ ] [ceph](https://aur.archlinux.org/packages/ceph/)
-[ ] [gnupg-largekeys](https://aur.archlinux.org/packages/gnupg-largekeys/) (I'd like to see this patch upstreamed into the main gnupg packages, actually.)
-[ ] [linux-lts-tresor](https://aur.archlinux.org/packages/linux-lts-tresor/)
-[ ] [lxc-docker](https://aur.archlinux.org/packages/lxc-docker/)
-[ ] [openonload](https://aur.archlinux.org/packages/openonload/)
-[ ] [python2-mrjob](https://aur.archlinux.org/packages/python2-mrjob/)
-[ ] [sc](https://aur.archlinux.org/packages/sc/)
-[ ] [vagrant](https://aur.archlinux.org/packages/vagrant/)
+- [ ] [ceph](https://aur.archlinux.org/packages/ceph/)
+- [ ] [gnupg-largekeys](https://aur.archlinux.org/packages/gnupg-largekeys/) (I'd like to see this patch upstreamed into the main gnupg packages, actually.)
+- [ ] [linux-lts-tresor](https://aur.archlinux.org/packages/linux-lts-tresor/)
+- [ ] [lxc-docker](https://aur.archlinux.org/packages/lxc-docker/)
+- [ ] [openonload](https://aur.archlinux.org/packages/openonload/)
+- [ ] [python2-mrjob](https://aur.archlinux.org/packages/python2-mrjob/)
+- [ ] [sc](https://aur.archlinux.org/packages/sc/)
+- [ ] [vagrant](https://aur.archlinux.org/packages/vagrant/)
 
