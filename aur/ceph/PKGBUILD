@@ -38,18 +38,6 @@ sha256sums=('1106ffb33612a95e353b7fe96bc6895b08df196246b8ab1afcf1c5a4358a4906'
             'b8239a04cc42e3e4ced2e141df6804e61e875131a5c95d6bcbfc3b44f388d44b'
             'c1669b2bedc07a313b8bd29735296791abc0fd94eb353c9683b6015f2cc2c93c')
 
-prepare() {
-  cd "$srcdir/$pkgname-$pkgver"
-  # Fix for newer version of automake.
-  find . -name 'Makefile.am' | while read makefile ; do
-    if grep -q AUTOMAKE_OPTIONS "$makefile" ; then
-      sed -i 's/AUTOMAKE_OPTIONS = /&subdir-objects /' "$makefile"
-    else
-      sed -i '1a\AUTOMAKE_OPTIONS = subdir-objects' "$makefile"
-    fi
-  done
-}
-
 build() {
   cd "$srcdir/$pkgname-$pkgver"
 
