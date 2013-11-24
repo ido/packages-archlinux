@@ -20,13 +20,13 @@ pkgname='openonload'
 pkgdesc="A high performance network stack from Solarflare."
 pkgver='201310'
 _kernelver="$(uname -r)"
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url='http://www.openonload.org/'
 license=('custom')
 depends=('linux-lts')
 makedepends=('linux-lts' 'linux-lts-headers')
-options=('!libtool' '!strip' '!makeflags' '!buildflags')
+options=('!libtool' '!strip' '!makeflags' '!buildflags' 'staticlibs')
 source=("http://www.openonload.org/download/openonload-${pkgver}.tgz"
         'openonload.install'
         'openonload.service'
