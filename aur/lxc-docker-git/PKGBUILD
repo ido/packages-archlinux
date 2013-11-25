@@ -55,9 +55,12 @@ build() {
   mkdir -p github.com/dotcloud
   mv docker github.com/dotcloud
 
-  # TODO FIXME: probably should switch to building using hack/makedist.sh...
-  go build -v -a github.com/dotcloud/docker/docker
-  go build -v -a github.com/dotcloud/docker/dockerinit
+  pushd github.com/dotcloud/docker
+  ./hack/make.sh dynbinary
+  popd
+  dockerver=$(cat github.com/dotcloud/docker/VERSION)
+  cp github.com/dotcloud/docker/bundles/docker-$dockerver/dynbinary/docker-$dockerver docker
+  cp github.com/dotcloud/docker/bundles/docker-$dockerver/dynbinary/dockerinit-$dockerver dockerinit
 
 #manpage build fails due to sphinx bug 
 #so we build html help for now
@@ -77,7 +80,8 @@ package() {
 
   # install docker binaries
   install -D -m 755 "$srcdir/docker" "$pkgdir/usr/bin/docker"
-  install -D -m 755 "$srcdir/dockerinit" "$pkgdir/usr/bin/dockerinit"
+  mkdir -p "$pkgdir/usr/libexec/docker"
+  install -D -m 755 "$srcdir/dockerinit" "$pkgdir/usr/libexec/docker/dockerinit"
 
   install -D -m 644 "github.com/dotcloud/docker/contrib/completion/bash/docker" "$pkgdir/usr/share/bash-completion/completions/docker"
   
