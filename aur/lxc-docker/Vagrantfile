@@ -15,6 +15,8 @@ Vagrant.configure("2") do |config|
             ]
         end
         node_config.vm.provision "shell", path: "build.sh"
+        node_config.vm.synced_folder "../lxc-docker-git", "/vagrant-git"
+        node_config.vm.synced_folder "../..", "/aur-git"
     end
     config.ssh.private_key_path = "~/.ssh/id_rsa_mi6"
 end
