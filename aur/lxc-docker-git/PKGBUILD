@@ -16,7 +16,7 @@
 # - change pkgver() to use git describe and tags.
 
 pkgname=lxc-docker-git
-pkgver=0.7.0.rc7.3830.3c20a8c
+pkgver=0.7.0.rc7.4585.ea7811c
 pkgrel=1
 pkgdesc="Docker - the Linux container runtime - devmapper version"
 arch=('x86_64')
@@ -43,8 +43,10 @@ sha512sums=(
 epoch=1
 
 pkgver() {
-  cd docker
-  printf "0.7.0.rc7.%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "${srcdir}/docker"
+  local dockerver
+  dockerver="$(cat ${srcdir}/docker/VERSION)" 
+  printf "%s.%s.%s" "${dockerver//-/.}" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
   # printf "%s" "$(git describe --long --tags | sed 's/v//; s/-/./g')"
 }
 
@@ -53,14 +55,14 @@ build() {
   
   rm -Rf github.com
   mkdir -p github.com/dotcloud
-  mv docker github.com/dotcloud
+  mv docker github.com/dotcloud/
 
   pushd github.com/dotcloud/docker
   ./hack/make.sh dynbinary
   popd
   dockerver=$(cat github.com/dotcloud/docker/VERSION)
-  cp github.com/dotcloud/docker/bundles/docker-$dockerver/dynbinary/docker-$dockerver docker
-  cp github.com/dotcloud/docker/bundles/docker-$dockerver/dynbinary/dockerinit-$dockerver dockerinit
+  cp github.com/dotcloud/docker/bundles/$dockerver/dynbinary/docker-$dockerver docker
+  cp github.com/dotcloud/docker/bundles/$dockerver/dynbinary/dockerinit-$dockerver dockerinit
 
 #manpage build fails due to sphinx bug 
 #so we build html help for now
