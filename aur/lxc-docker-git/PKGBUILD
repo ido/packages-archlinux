@@ -16,7 +16,7 @@
 # - change pkgver() to use git describe and tags.
 
 pkgname=lxc-docker-git
-pkgver=0.7.0.dev.4685.06d5e25
+pkgver=0.7.0.dev.4691.6344e6f
 pkgrel=1
 pkgdesc="Docker - the Linux container runtime - devmapper version"
 arch=('x86_64')
