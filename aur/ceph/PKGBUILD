@@ -24,7 +24,7 @@ depends=('libedit' 'libsigc++' 'gtkmm' 'btrfs-progs' 'crypto++'
          'gperftools>=1.8.3-2' 'python2' 'fuse' 'keyutils'
          'libatomic_ops' 'curl' 'libaio' 'fcgi' 'expat' 'boost'
          'leveldb')
-makedepends=('boost' 'boost-libs')
+makedepends=('boost' 'boost-libs' 'yasm')
 install=ceph.install
 options=('!libtool' 'emptydirs')
 source=("http://ceph.newdream.net/download/$pkgname-$pkgver.tar.bz2" 
