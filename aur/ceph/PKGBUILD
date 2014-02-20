@@ -45,7 +45,7 @@ build() {
   find . -type f -exec sed -i 's,^#!/usr/bin/env python$,#!/usr/bin/env python2,g' {} \;
 
   #./autogen.sh # if pulling from git
-  LIBS="-lpthread -lboost_system" ./configure \
+  LIBS="-lpthread -lboost_system" PYTHON=/usr/bin/python2 LDFLAGS="" ./configure \
     --prefix=/usr \
     --sysconfdir=/etc \
     --with-radosgw
