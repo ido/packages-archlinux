@@ -41,6 +41,9 @@ sha256sums=('f8c3017e107fbc1e48c784539fdc855c9d187095bc54df51d76f4d1e6300bd11'
 build() {
   cd "$srcdir/$pkgname-$pkgver"
 
+  # fix python scripts to use python2
+  find . -type f -exec sed -i 's,^#!/usr/bin/env python$,#!/usr/bin/env python2,g' {} \;
+
   #./autogen.sh # if pulling from git
   LIBS="-lpthread -lboost_system" ./configure \
     --prefix=/usr \
