@@ -75,7 +75,7 @@ package() {
   install -m755 "src/solar_capture_monitor" "${pkgdir}/usr/bin"
 
   # Python module:
-  install -dm755 "${pkgdir}/${_python_sitelib}"
+  install -dm755 "${pkgdir}/${_python_sitelib}/${pkgname}"
   install -m644 "src/python/solar_capture_c.so" \
       "${pkgdir}/${_python_sitelib}/"
   for i in __init__.py shm.py stats.py tabulate.py
