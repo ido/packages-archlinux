@@ -19,23 +19,27 @@
 pkgname='openonload'
 pkgdesc="A high performance network stack from Solarflare."
 pkgver='201405'
-_kernelver="$(uname -r)"
+if [[ -z "$_kernelver" ]]; then
+    _kernelver="$(uname -r)"
+fi
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.openonload.org/'
 license=('custom')
-depends=('linux-lts')
-makedepends=('linux-lts' 'linux-lts-headers')
+depends=("linux-lts")
+makedepends=("linux-lts" "linux-lts-headers")
 options=('!libtool' '!strip' '!makeflags' '!buildflags' 'staticlibs')
 source=("http://www.openonload.org/download/openonload-${pkgver//\./-}.tgz"
         'openonload.install'
         'openonload.service'
         'openonload-201310-cpp11-space-literal-fix.patch'
+        'openonload-201405-extramodules-and-noinitrc.patch'
 )
 sha512sums=('b9d0f33b21e41b302ba0bb0e8de53cec7f5f1766c2714fdc09030da68e385e21fd24167487392b5a8530b51554fc0ed9577b4f65bf662adfd814723839c26a8d'
             '0990593ba7f9845b2e89df4cc9cd178ffec774aea24649420abde653e8578c86e8d84da86bc3299be02e7d4541d90cf5b62a5c6f60c13b144a53c8e09b1c2933'
-            'ee848f993b39215da9651b67a9c1d1d189862cd38514f4749b59dee02cab59dc587381d35fc8620bc2a6eb245207a4a9dc44e33a6bbf32c28fc1096a65960b70'
-            'd4fda83764e79cff525f578e14b337937d2a6a3e0fc5f3cc5ec07b739f4bcc46b294fa560db595b0efb14bdf70eab44e833c05278e28d8fb947f9f8b77748a78')
+            'b7e4529e37c64f99c660ca9b58f388cdd8f0d2f250ba875eb210f4909bb1f1c985a065aae64c048ca6f824adc6e3176c6eae1f582c049631326db73e939edd7b'
+            'd4fda83764e79cff525f578e14b337937d2a6a3e0fc5f3cc5ec07b739f4bcc46b294fa560db595b0efb14bdf70eab44e833c05278e28d8fb947f9f8b77748a78'
+            '5eb2ad491ed62746d9d23f11f203364408e8d8b3d423edb2dd771fecf329d751be736bdef91ae09bb456e23d03d1789a44952155e00e6e08263bf40d11cae28c')
 install="openonload.install"
 
 prepare() {
@@ -73,6 +77,7 @@ package() {
       --kernelver "$_kernelver" \
       ${DEBUG:+--debug} rpm_install
   rm -f "${pkgdir}/etc/modprobe.conf" # may be created by onload_install
+
 
   install -Dm755 scripts/onload_install \
                                   "${pkgdir}/lib/onload/onload_install"
