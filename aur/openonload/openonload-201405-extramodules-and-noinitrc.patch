@@ -1,5 +1,5 @@
 diff --git a/scripts/onload_install b/scripts/onload_install
-index 3af0917..b9e5388 100755
+index 3af0917..d33f565 100755
 --- a/scripts/onload_install
 +++ b/scripts/onload_install
 @@ -259,7 +259,7 @@ install_userland() {
@@ -29,6 +29,15 @@ index 3af0917..b9e5388 100755
        check_file_installed "$i_prefix/lib/modules/$KVER/$where/$drv"
      done
    done
+@@ -508,7 +508,7 @@ do_rpm_install() {
+ 
+ do_rpm_post() {
+   # Invoked by the rpm install.
+-  install_init_script
++  #install_init_script
+   is_rhel4 && rhel4_modprobe_fixup
+   exit
+ }
 diff --git a/scripts/onload_misc/onload_depmod.conf b/scripts/onload_misc/onload_depmod.conf
 index c2cdeeb..65dae7a 100644
 --- a/scripts/onload_misc/onload_depmod.conf
