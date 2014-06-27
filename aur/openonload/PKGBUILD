@@ -22,7 +22,7 @@ pkgver='201405'
 if [[ -z "$_kernelver" ]]; then
     _kernelver="$(uname -r)"
 fi
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.openonload.org/'
 license=('custom')
@@ -79,6 +79,20 @@ package() {
       ${DEBUG:+--debug} rpm_install
   rm -f "${pkgdir}/etc/modprobe.conf" # may be created by onload_install
 
+  # ef_vi libraries:
+  install -dm755                  "${pkgdir}/usr/lib64/"
+
+  if [ "${CARCH}" == "x86_64" ]; then
+  install -m644 build/gnu_${CARCH}/lib/ciul/libciul.so* \
+      "${pkgdir}/usr/lib64/"
+  install -m644 build/gnu_${CARCH}/lib/ciul/lib{ciul,efvi}1.a \
+      "${pkgdir}/usr/lib64/"
+  elif [ "${CARCH}" == "i686" ]; then
+  install -m644 build/gnu_${CARCH}/lib/ciul/libciul.so* \
+      "${pkgdir}/usr/lib/"
+  install -m644 build/gnu_${CARCH}/lib/ciul/lib{ciul,efvi}1.a \
+      "${pkgdir}/usr/lib/"
+  fi
 
   install -Dm755 scripts/onload_install \
                                   "${pkgdir}/lib/onload/onload_install"
