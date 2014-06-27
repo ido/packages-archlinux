@@ -16,7 +16,7 @@ license=('custom')
 depends=('linux-lts' 'openonload')
 makedepends=()
 options=('!libtool' '!strip' '!makeflags' '!buildflags' 'staticlibs')
-source=("SF-108910-LS-7_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit.tgz"
+source=("http://127.0.0.1/SF-108910-LS-7_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit.tgz"
         'sfptpd.service')
 sha512sums=('8f4d7076f4aba5886fdf533d9f176c08510fac52f2c42e93fc184094a969e3736266b7009b7fe5391453b89bc1b237a4be04270b5b4b981371a32be038e8def6'
             'f9be3642a0b9bb79a753b7c77d0d8777e8816444aecf66573c693886f860db957d76c282ca9d78367f1ceebfda5d6958a43719a4b1ebb1b33fb609262a9b0453')
