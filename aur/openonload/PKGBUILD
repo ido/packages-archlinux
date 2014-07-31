@@ -22,7 +22,7 @@ pkgver='201405.u1'
 if [[ -z "$_kernelver" ]]; then
     _kernelver="$(uname -r)"
 fi
-pkgrel=3
+pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.openonload.org/'
 license=('custom')
