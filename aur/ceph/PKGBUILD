@@ -14,7 +14,7 @@
 #
 
 pkgname=ceph
-pkgver=0.80.1
+pkgver=0.80.5
 pkgrel=1
 pkgdesc='Distributed, fault-tolerant file system delivering object, block, and file storage in one unified system.'
 arch=('x86_64' 'i686')
