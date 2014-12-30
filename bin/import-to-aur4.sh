@@ -205,8 +205,8 @@ AUR4HOST=${AUR4HOST:-aur-dev.archlinux.org}
 AUR4USER=${AUR4USER:-aur}
 AUR4PORT=${AUR4PORT:-2222}
 
-REPO=$1
-SUBDIR=$2
+REPO=${1:-}
+SUBDIR=${2:-}
 
 if [ -z "$REPO" -o -z "$SUBDIR" ]; then
     echo "Usage: $0 <path to git repository> <relpath to package dirs>"
