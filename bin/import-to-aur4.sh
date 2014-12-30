@@ -203,7 +203,7 @@ set -x
 
 AUR4HOST="${AUR4HOST:-aur-dev.archlinux.org}"
 AUR4USER="${AUR4USER:-aur}"
-AUR4PORT="{AUR4PORT:-2222}"
+AUR4PORT="${AUR4PORT:-2222}"
 
 REPO="$1"
 SUBDIR="$2"
