@@ -201,12 +201,12 @@ set -e
 set -u
 set -x
 
-AUR4HOST=${AUR4HOST:-aur-dev.archlinux.org}
-AUR4USER=${AUR4USER:-aur}
-AUR4PORT=${AUR4PORT:-2222}
+AUR4HOST="${AUR4HOST:-aur-dev.archlinux.org}"
+AUR4USER="${AUR4USER:-aur}"
+AUR4PORT="{AUR4PORT:-2222}"
 
-REPO=$1
-SUBDIR=$2
+REPO="$1"
+SUBDIR="$2"
 
 if [ -z "$REPO" -o -z "$SUBDIR" ]; then
     echo "Usage: $0 <path to git repository> <relpath to package dirs>"
@@ -226,7 +226,7 @@ PKGBUILDS=()
 SRCINFOS=()
 
 pushd "$TEMP"
-    git clone $REPO upstream
+    git clone "$REPO" upstream
     pushd upstream
         pushd "$SUBDIR"
             for p in *; do
@@ -248,8 +248,8 @@ pushd "$TEMP"
         popd
         for p in ${PACKAGES[@]}; do
             st="$SUBDIR/$p"
-            git subtree split --prefix="$st" -b aur4/$p
-            git filter-branch -f --tree-filter "test -f .SRCINFO || cp $TEMP/SRCINFO-$p .SRCINFO" -- aur4/$p
+            git subtree split --prefix="$st" -b aur4/"$p"
+            git filter-branch -f --tree-filter "test -f .SRCINFO || cp '$TEMP'/SRCINFO-'$p' .SRCINFO" -- aur4/"$p"
             ssh -p${AUR4PORT} ${AUR4USER}@${AUR4HOST} setup-repo "$p" || \
                 echo "Failed to setup-repo $p ... maybe it already exists?"
             git push "ssh+git://${AUR4USER}@${AUR4HOST}:${AUR4PORT}/${p}.git/" "aur4/${p}:master" || \
