@@ -9,6 +9,7 @@
 # Contributor: Dave Simons <miouhpi@gmail.com>
 # Contributor: David Anderson <dave@natulte.net>
 # Contributor: Joe Julian <me@joejulian.name>
+# Contributor: Emil Renner Berthing <esmil@mailme.dk>
 #
 # NOTE: To request changes to this package, please submit a pull request
 #       to the GitHub repository at https://github.com/ido/packages-archlinux
@@ -73,7 +74,10 @@ build() {
 
   LIBS="-lpthread -lboost_system" PYTHON=/usr/bin/python2 LDFLAGS="" ./configure \
     --prefix=/usr \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib \
     --sysconfdir=/etc \
+    --localstatedir=/var \
     --with-radosgw
 
   make
@@ -101,7 +105,8 @@ package() {
   install -Dm644 "udev/95-ceph-osd-alt.rules" "$pkgdir/usr/lib/udev/rules.d/95-ceph-osd.rules"
 
   # Fix bin directory.
-  mv "$pkgdir/usr/sbin" "$pkgdir/usr/bin"
+  mv "$pkgdir/sbin/"* "$pkgdir/usr/bin"
+  rmdir "$pkgdir/sbin"
 
   # Sample config.
   install -Dm644 "$pkgdir/usr/share/doc/ceph/sample.ceph.conf" \
@@ -112,5 +117,5 @@ package() {
     "$pkgdir/usr/share/licenses/$pkgname/COPYING"
 
   # Clean up.
-  rmdir "$pkgdir/var/run/ceph"
+  rm -rf "$pkgdir/var/run"
 }
