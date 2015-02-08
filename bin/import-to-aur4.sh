@@ -208,12 +208,13 @@ AUR4PORT=${AUR4PORT:-2222}
 REPO=${1:-}
 SUBDIR=${2:-}
 
-if [ -z "$REPO" -o -z "$SUBDIR" ]; then
-    echo "Usage: $0 <path to git repository> <relpath to package dirs>"
+if [ -z "$REPO" ]; then
+    echo "Usage: $0 <path to git repository> [relpath to package dirs>/]"
     echo "Example 1: $0 https://github.com/ido/packages-archlinux aur"
-    echo "           In this example, packages are in a subdir called 'aur'."
+    echo "           In this example, packages are in a subdir called 'aur/'."
     echo "           Go to the URL in the example to see this in the wild..."
-    echo "Example 2: $0 https://github.com/ABC/DEF ."
+    echo "           <relpath> MUST END IN / if provided!!!"
+    echo "Example 2: $0 https://github.com/ABC/DEF"
     echo "           In this example, packages are in the root of the tree."
     echo "Copyright 2014 (c) Ido Rosen <ido@kernel.org>"
     echo "Released under dual GPL/BSD license."
@@ -247,7 +248,7 @@ pushd "$TEMP"
             done
         popd
         for p in ${PACKAGES[@]}; do
-            st="$SUBDIR/$p"
+            st="$SUBDIR$p"
             git subtree split --prefix="$st" -b aur4/$p
             git filter-branch -f --tree-filter "test -f .SRCINFO || cp $TEMP/SRCINFO-$p .SRCINFO" -- aur4/$p
             ssh -p${AUR4PORT} ${AUR4USER}@${AUR4HOST} setup-repo "$p" || \
