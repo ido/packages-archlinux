@@ -210,7 +210,7 @@ SUBDIR=${2:-}
 
 if [ -z "$REPO" ]; then
     echo "Usage: $0 <path to git repository> [relpath to package dirs>/]"
-    echo "Example 1: $0 https://github.com/ido/packages-archlinux aur"
+    echo "Example 1: $0 https://github.com/ido/packages-archlinux aur/"
     echo "           In this example, packages are in a subdir called 'aur/'."
     echo "           Go to the URL in the example to see this in the wild..."
     echo "           <relpath> MUST END IN / if provided!!!"
