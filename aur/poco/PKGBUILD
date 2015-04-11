@@ -27,13 +27,13 @@ build()
 {
   cd "${srcdir}/poco-${_pkgver}-all"
   ./configure --prefix=/usr --no-samples --no-tests
-  make ODBCLIBDIR="/usr/lib"
+  make POCO_ODBC_LIB="/usr/lib" ODBCLIBDIR="/usr/lib"
 }
 
 package()
 {
   cd "${srcdir}/poco-${_pkgver}-all"
-  make ODBCLIBDIR="/usr/lib" DESTDIR="${pkgdir}" install
+  make POCO_ODBC_LIB="/usr/lib" ODBCLIBDIR="/usr/lib" DESTDIR="${pkgdir}" install
   install -Dm644 'LICENSE' "${pkgdir}/usr/share/licenses/poco/LICENSE"
 
   chrpath -d "${pkgdir}/usr/bin/cpspc"
