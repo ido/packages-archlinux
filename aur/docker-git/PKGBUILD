@@ -10,7 +10,7 @@
 #
 
 pkgname=docker-git
-pkgver=1.5.0.dev.13153.99ca215
+pkgver=1.5.0.dev.13967.ded0ada
 pkgrel=1
 epoch=1
 pkgdesc='Pack, ship and run any application as a lightweight container'
@@ -25,17 +25,11 @@ conflicts=('docker')
 # don't strip binaries! A sha1 is used to check binary consistency.
 options=('!strip')
 source=("git+https://github.com/dotcloud/docker.git"
-        'docker.service'
-        'docker.install'
         docker.conf
         )
 md5sums=('SKIP'
-         '3f7ccab915fb1942f06e18946c2811d2'
-         '1a8e60447794b3c4f87a2272cc9f144f'
          '9bce988683771fb8262197f2d8196202')
 install='docker.install'
-# magic harcoded path
-#_magic=src/github.com/dotcloud
 
 pkgver() {
   cd "${srcdir}/docker"
@@ -44,28 +38,24 @@ pkgver() {
 }
 
 prepare() {
-  #mkdir -p "$_magic"
-  #ln -sfn "../../../docker" "$_magic/docker"
-  #cd "$_magic/docker"
   cd docker
+  #patch -Np1 -i $srcdir/multicast.patch
 }
 
 build() {
-  #cd "$_magic/docker"
-  #export GOPATH="$srcdir:$srcdir/$_magic/docker/vendor"
   cd docker
+  export DOCKER_BUILDTAGS=btrfs_noversion
   export AUTO_GOPATH=1
   ./hack/make.sh dynbinary
 }
 
 #check() {
-  #cd "$_magic/docker"
+  #cd "docker"
   # Will be added upstream soon
   #./hack/make.sh dyntest
 #}
 
 package() {
-  #cd "$_magic/docker"
   cd docker
   _dockerver="$(cat VERSION)"
   install -Dm755 "bundles/$_dockerver/dynbinary/docker-$_dockerver" "$pkgdir/usr/bin/docker"
@@ -73,8 +63,18 @@ package() {
   # completion
   install -Dm644 "contrib/completion/bash/docker" "$pkgdir/usr/share/bash-completion/completions/docker"
   install -Dm644 "contrib/completion/zsh/_docker" "$pkgdir/usr/share/zsh/site-functions/_docker"
+  install -Dm644 'contrib/completion/fish/docker.fish' "$pkgdir/usr/share/fish/completions/docker.fish"
   # systemd
-  install -Dm644 "$srcdir/docker.service" "$pkgdir/usr/lib/systemd/system/docker.service"
+  install -Dm644 'contrib/init/systemd/docker.service' \
+    "$pkgdir/usr/lib/systemd/system/docker.service"
+  install -Dm644 'contrib/init/systemd/docker.socket' \
+    "$pkgdir/usr/lib/systemd/system/docker.socket"
+  # vim syntax
+  install -Dm644 'contrib/syntax/vim/syntax/dockerfile.vim' \
+    "$pkgdir/usr/share/vim/vimfiles/syntax/dockerfile.vim"
+  install -Dm644 'contrib/syntax/vim/ftdetect/dockerfile.vim' \
+    "$pkgdir/usr/share/vim/vimfiles/ftdetect/dockerfile.vim"
+  # sysctl
   install -Dm644 "$srcdir/docker.conf" "$pkgdir/etc/sysctl.d/docker.conf"
 }
 
