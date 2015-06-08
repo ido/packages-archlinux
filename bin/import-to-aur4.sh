@@ -201,9 +201,9 @@ set -e
 set -u
 set -x
 
-AUR4HOST=${AUR4HOST:-aur-dev.archlinux.org}
+AUR4HOST=${AUR4HOST:-aur4.archlinux.org}
 AUR4USER=${AUR4USER:-aur}
-AUR4PORT=${AUR4PORT:-2222}
+AUR4PORT=${AUR4PORT:-22}
 
 REPO=${1:-}
 SUBDIR=${2:-}
