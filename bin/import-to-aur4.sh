@@ -1,11 +1,10 @@
 #!/bin/bash
 
 which mksrcinfo \
-	|| echo "Please install a current pkgbuild-introspection."; exit -1
+	|| { echo "Please install a current pkgbuild-introspection."; exit -1; }
 
 set -e
 set -u
-set -x
 
 AUR4HOST=${AUR4HOST:-aur4.archlinux.org}
 AUR4USER=${AUR4USER:-aur}
@@ -27,6 +26,7 @@ if [ -z "$REPO" ]; then
     exit 1
 fi
 
+set -x
 TEMP="$(mktemp -d --tmpdir importaur4.XXXXX)"
 PACKAGES=()
 
