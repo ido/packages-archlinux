@@ -1,0 +1,16 @@
+pkgbase = python2-mrjob
+	pkgdesc = Run MapReduce jobs on Hadoop or Amazon Web Services.
+	pkgver = 0.4.2
+	pkgrel = 1
+	url = https://github.com/Yelp/mrjob/
+	arch = any
+	license = apache
+	depends = python2
+	depends = python2-boto
+	depends = python2-simplejson
+	depends = python2-yaml
+	source = https://github.com/Yelp/mrjob/archive/v0.4.2.tar.gz
+	sha512sums = 9f7e878bf1838b2fad77d7dc54fcef6f7e888c10dfc00a5ac7946e5963752efe9ff5bc93ab77bd2f04bea61eaa0ed6e55283722d96d8002c1b171a0066f3b644
+
+pkgname = python2-mrjob
+
