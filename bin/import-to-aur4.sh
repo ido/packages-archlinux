@@ -1,7 +1,7 @@
 #!/bin/bash
 
 which mksrcinfo \
-	|| echo "please install a curent pkgbuild-introspection"; exit -1
+	|| echo "Please install a current pkgbuild-introspection."; exit -1
 
 set -e
 set -u
