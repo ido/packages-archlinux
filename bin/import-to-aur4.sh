@@ -43,7 +43,7 @@ pushd "$TEMP"
         for p in ${PACKAGES[@]}; do
             st="$SUBDIR$p"
             git subtree split --prefix="$st" -b aur4/$p
-            git filter-branch -f --tree-filter "test -f .SRCINFO || mksrcinfo" -- aur4/$p
+            git filter-branch -f --tree-filter "mksrcinfo" -- aur4/$p
             ssh -p${AUR4PORT} ${AUR4USER}@${AUR4HOST} setup-repo "$p" || \
                 echo "Failed to setup-repo $p ... maybe it already exists?"
             git push "ssh+git://${AUR4USER}@${AUR4HOST}:${AUR4PORT}/${p}.git/" "aur4/${p}:master" || \
