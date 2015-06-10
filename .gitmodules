@@ -1,0 +1,63 @@
+[submodule "aur4/bmon-git"]
+	path = aur4/bmon-git
+	url = https://aur4.archlinux.org/bmon-git.git/
+[submodule "aur4/ceph-git"]
+	path = aur4/ceph-git
+	url = https://aur4.archlinux.org/ceph-git.git/
+[submodule "aur4/coinor-csdp"]
+	path = aur4/coinor-csdp
+	url = https://aur4.archlinux.org/coinor-csdp.git/
+[submodule "aur4/docker-git"]
+	path = aur4/docker-git
+	url = https://aur4.archlinux.org/docker-git.git/
+[submodule "aur4/dpkg"]
+	path = aur4/dpkg
+	url = https://aur4.archlinux.org/dpkg.git/
+[submodule "aur4/duplicity-bzr"]
+	path = aur4/duplicity-bzr
+	url = https://aur4.archlinux.org/duplicity-bzr.git/
+[submodule "aur4/ejabberd-git"]
+	path = aur4/ejabberd-git
+	url = https://aur4.archlinux.org/ejabberd-git.git/
+[submodule "aur4/fix8"]
+	path = aur4/fix8
+	url = https://aur4.archlinux.org/fix8.git/
+[submodule "aur4/gnupg-largekeys"]
+	path = aur4/gnupg-largekeys
+	url = https://aur4.archlinux.org/gnupg-largekeys.git/
+[submodule "aur4/l1_logreg"]
+	path = aur4/l1_logreg
+	url = https://aur4.archlinux.org/l1_logreg.git/
+[submodule "aur4/log4cxx"]
+	path = aur4/log4cxx
+	url = https://aur4.archlinux.org/log4cxx.git/
+[submodule "aur4/mosek"]
+	path = aur4/mosek
+	url = https://aur4.archlinux.org/mosek.git/
+[submodule "aur4/openonload"]
+	path = aur4/openonload
+	url = https://aur4.archlinux.org/openonload.git/
+[submodule "aur4/poco"]
+	path = aur4/poco
+	url = https://aur4.archlinux.org/poco.git/
+[submodule "aur4/python2-mrjob"]
+	path = aur4/python2-mrjob
+	url = https://aur4.archlinux.org/python2-mrjob.git/
+[submodule "aur4/sfptpd"]
+	path = aur4/sfptpd
+	url = https://aur4.archlinux.org/sfptpd.git/
+[submodule "aur4/sfutils"]
+	path = aur4/sfutils
+	url = https://aur4.archlinux.org/sfutils.git/
+[submodule "aur4/solar_capture"]
+	path = aur4/solar_capture
+	url = https://aur4.archlinux.org/solar_capture.git/
+[submodule "aur4/spdlog-git"]
+	path = aur4/spdlog-git
+	url = https://aur4.archlinux.org/spdlog-git.git/
+[submodule "aur4/stan"]
+	path = aur4/stan
+	url = https://aur4.archlinux.org/stan.git/
+[submodule "aur4/stanc"]
+	path = aur4/stanc
+	url = https://aur4.archlinux.org/stanc.git/
