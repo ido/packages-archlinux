@@ -7,6 +7,9 @@ https://aur.archlinux.org/packages/?K=ido&SeB=m
 AUR Packages
 ------------
 
+*All pull requests should make changes to `aur/`.  `aur4/` submodules are
+provided for reference only.*
+
 All packages that I maintain that are available on AUR are located in the
 [`aur`](https://github.com/ido/packages-archlinux/tree/master/aur) directory.
 
