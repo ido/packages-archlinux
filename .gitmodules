@@ -67,3 +67,6 @@
 [submodule "aur4/sysjitter"]
 	path = aur4/sysjitter
 	url = https://aur@aur4.archlinux.org/sysjitter.git
+[submodule "aur4/tn40xx"]
+	path = aur4/tn40xx
+	url = https://aur@aur4.archlinux.org/tn40xx.git
