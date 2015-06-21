@@ -7,7 +7,7 @@
 #
 
 pkgname='tn40xx'
-pkgdesc=""
+pkgdesc="Tehuti Networks tn40xx network driver."
 pkgver='0.3.6.12.1'
 pkgrel=1
 arch=('x86_64')
