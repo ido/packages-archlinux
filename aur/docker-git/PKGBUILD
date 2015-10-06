@@ -17,7 +17,7 @@ pkgrel=1
 epoch=1
 pkgdesc='Pack, ship and run any application as a lightweight container'
 arch=(i686 'x86_64')
-url="https://github.com/dotcloud/docker"
+url="https://github.com/docker/docker"
 license=('Apache')
 depends=('bridge-utils' 'iproute2' 'device-mapper' 'sqlite' 'systemd')
 makedepends=('git' 'go' 'btrfs-progs' 'go-md2man')
@@ -26,7 +26,7 @@ provides=('docker')
 conflicts=('docker')
 # don't strip binaries! A sha1 is used to check binary consistency.
 options=('!strip')
-source=("git+https://github.com/dotcloud/docker.git"
+source=("git+https://github.com/docker/docker.git"
         'docker.service'
         'docker.install'
         docker.conf
