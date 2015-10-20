@@ -35,8 +35,8 @@ package() {
     install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
     install -m644 Readme release_notes \
             "${pkgdir}/usr/share/doc/${pkgname}"
-    install -dm755 "${pkgdir}/lib/modules/$(uname -r)/drivers/net/"
-    install -m755 ${pkgname}.ko "${pkgdir}/lib/modules/$(uname -r)/drivers/net/"
+    install -dm755 "${pkgdir}/usr/lib/modules/$(uname -r)/drivers/net/"
+    install -m755 ${pkgname}.ko "${pkgdir}/usr/lib/modules/$(uname -r)/drivers/net/"
     install -dm755 "${pkgdir}/etc/pm/config.d/"
     echo "SUSPEND_MODULES=${pkgname}" > "${pkgdir}/etc/pm/config.d/${pkgname}"
 }
