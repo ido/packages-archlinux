@@ -10,7 +10,7 @@
 #
 
 pkgname=ejabberd-git
-pkgver=15.10.9.g8bff06b
+pkgver=15.10.11.g9d2f1d5
 pkgrel=1
 pkgdesc="Jabber server written in Erlang"
 arch=('x86_64' 'i686')
@@ -22,12 +22,12 @@ makedepends=('git' 'rebar')
 backup=('etc/ejabberd/ejabberd.yml'
 	'etc/ejabberd/ejabberdctl.cfg'
 	'etc/logrotate.d/ejabberd')
-install=${pkgname%%-git}.install
+install=${pkgname%-git}.install
 replaces=('ejabberd-mod_mysql' 'ejabberd-mod_mysql-svn'
 	  'ejabberd-mod_pgsql' 'ejabberd-mod_pgsql-svn')
 conflicts=('ejabberd')
 provides=('ejabberd')
-source=("${pkgname%%-git}-$pkgver::git+https://github.com/processone/ejabberd"
+source=("${pkgname%-git}::git+https://github.com/processone/ejabberd"
 	"p1_cache_tab::git+https://github.com/processone/cache_tab"
 	"p1_tls::git+https://github.com/processone/tls"
 	"p1_stringprep::git+https://github.com/processone/stringprep"
@@ -51,7 +51,7 @@ source=("${pkgname%%-git}-$pkgver::git+https://github.com/processone/ejabberd"
   "elixir::git+https://github.com/elixir-lang/elixir"
 	"git+https://github.com/wooga/eredis"
 	"sqlite3::git+https://github.com/alexeyr/erlang-sqlite3"
-	"${pkgname%%-git}.logrotate"
+	"${pkgname%-git}.logrotate"
 	"ejabberd.service"
 	"sysuser.conf")
 md5sums=('SKIP'
@@ -83,29 +83,29 @@ md5sums=('SKIP'
          '458fc41be4adb9554a53b8f9ae05fbee')
 
 pkgver() {
-  cd "${srcdir}/${pkgname%%-git}-$pkgver"
+  cd "${srcdir}/${pkgname%-git}"
   #printf "%s" "$(git describe --long --tags | sed 's/v//; s/-/./g')"
   git describe --long --tags | sed 's/^v//; s/-/./g'
 }
 
 prepare() {
-  cd "$srcdir/${pkgname%%-git}-$pkgver"
+  cd "$srcdir/${pkgname%-git}"
 
-  mkdir -p "$srcdir/${pkgname%%-git}-$pkgver/deps"
+  mkdir -p "$srcdir/${pkgname%-git}/deps"
   for i in goldrush lager p1_cache_tab p1_iconv p1_pam \
            p1_stringprep p1_tls p1_xml p1_yaml p1_zlib xmlrpc \
            p1_mysql p1_pgsql p1_stun jiffy \
            esip p1_utils oauth2 meck \
            rebar_elixir_plugin elixir eredis \
            sqlite3; do
-    rm -rf "$srcdir/${pkgname%%-git}-$pkgver/deps/$i"
-    mv $srcdir/$i "$srcdir/${pkgname%%-git}-$pkgver/deps"
+    rm -rf "$srcdir/${pkgname%-git}/deps/$i"
+    mv $srcdir/$i "$srcdir/${pkgname%-git}/deps"
   done
 
 }
 
 build() {
-  cd "$srcdir/${pkgname%%-git}-$pkgver"
+  cd "$srcdir/${pkgname%-git}"
   [ -x configure ] || ./autogen.sh
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
     --enable-all --disable-riak
@@ -113,7 +113,7 @@ build() {
 }
 
 package() {
-  cd "$srcdir/${pkgname%%-git}-$pkgver"
+  cd "$srcdir/${pkgname%-git}"
 
   # make install workaround
   #rm -f deps/sqlite3/include/sqlite3.hrl
@@ -121,9 +121,9 @@ package() {
   make DESTDIR="$pkgdir" install
 
   #install -Dm04750 deps/p1_pam/priv/bin/epam $pkgdir/usr/lib/ejabberd/priv/bin/epam
-  install -d "$pkgdir/var/lib/${pkgname%%-git}"
-  install -D -m0644 "$srcdir/${pkgname%%-git}.logrotate" "$pkgdir/etc/logrotate.d/${pkgname%%-git}"
-  chmod ug+r "$pkgdir/etc/${pkgname%%-git}/"*
+  install -d "$pkgdir/var/lib/${pkgname%-git}"
+  install -D -m0644 "$srcdir/${pkgname%-git}.logrotate" "$pkgdir/etc/logrotate.d/${pkgname%-git}"
+  chmod ug+r "$pkgdir/etc/${pkgname%-git}/"*
   mkdir -p $pkgdir/usr/bin
   mv $pkgdir/usr/sbin/ejabberdctl $pkgdir/usr/bin/ejabberdctl
   chmod a+rx "$pkgdir/usr/bin/ejabberdctl" "$pkgdir/usr/lib/ejabberd/priv/bin/captcha.sh"
