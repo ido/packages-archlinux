@@ -120,7 +120,6 @@ package() {
 
   make DESTDIR="$pkgdir" install
 
-  #install -Dm04750 deps/p1_pam/priv/bin/epam $pkgdir/usr/lib/ejabberd/priv/bin/epam
   install -d "$pkgdir/var/lib/${pkgname%-git}"
   install -D -m0644 "$srcdir/${pkgname%-git}.logrotate" "$pkgdir/etc/logrotate.d/${pkgname%-git}"
   chmod ug+r "$pkgdir/etc/${pkgname%-git}/"*
