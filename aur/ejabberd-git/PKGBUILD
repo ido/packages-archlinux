@@ -10,7 +10,7 @@
 #
 
 pkgname=ejabberd-git
-pkgver=15.10.11.g9d2f1d5
+pkgver=15.10.14.gff46738
 pkgrel=1
 pkgdesc="Jabber server written in Erlang"
 arch=('x86_64' 'i686')
@@ -122,13 +122,14 @@ package() {
 
   install -d "$pkgdir/var/lib/${pkgname%-git}"
   install -D -m0644 "$srcdir/${pkgname%-git}.logrotate" "$pkgdir/etc/logrotate.d/${pkgname%-git}"
+  install -D -m0644 "$srcdir/${pkgname%-git}/tools/ejabberdctl.bc" "$pkgdir/usr/share/bash-completion/completions/ejabberdctl"
   chmod ug+r "$pkgdir/etc/${pkgname%-git}/"*
   mkdir -p $pkgdir/usr/bin
-  mv $pkgdir/usr/sbin/ejabberdctl $pkgdir/usr/bin/ejabberdctl
+  mv "$pkgdir/usr/sbin/ejabberdctl" "$pkgdir/usr/bin/ejabberdctl"
   chmod a+rx "$pkgdir/usr/bin/ejabberdctl" "$pkgdir/usr/lib/ejabberd/priv/bin/captcha.sh"
   rm -rf "$pkgdir/var/lock" "$pkgdir/usr/sbin"
   install -Dm0644 $srcdir/ejabberd.service $pkgdir/usr/lib/systemd/system/ejabberd.service
-  install -Dm644 $srcdir/sysuser.conf "$pkgdir"/usr/lib/sysusers.d/ejabberd.conf
+  install -Dm644 "$srcdir/sysuser.conf" "$pkgdir/usr/lib/sysusers.d/ejabberd.conf"
   # workaround
   ln -s mod_configure.beam $pkgdir/usr/lib/ejabberd/ebin/configure.beam
   rm -f $pkgdir/usr/bin/{elixir,iex,mix}
