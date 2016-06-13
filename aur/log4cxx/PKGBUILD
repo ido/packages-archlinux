@@ -3,20 +3,23 @@ pkgver=0.10.0
 pkgrel=3
 pkgdesc="A C++ port of Log4j"
 url="http://logging.apache.org/log4cxx"
-license="APACHE"
+license=("Apache")
 depends=('apr-util' 'libxml2')
 arch=('i686' 'x86_64')
 makedepends=('autoconf' 'automake' 'libtool' 'patch' 'zip' 'gzip' 'sed')
 
 source=(http://archive.apache.org/dist/logging/$pkgname/$pkgver/apache-$pkgname-$pkgver.tar.gz
-        log4cxx-0.10.0-missing_includes.patch)
+        log4cxx-0.10.0-missing_includes.patch
+        log4cxx-0.10.0-narrowing-fixes-from-upstream.patch)
 md5sums=('b30ffb8da3665178e68940ff7a61084c'
-         'dfa17719a57b19f12cbef94419a2aac8')
+         'dfa17719a57b19f12cbef94419a2aac8'
+         '171671316f3ad2e52bb62e6468f72585')
 
 build() {
   cd "$srcdir/apache-$pkgname-$pkgver"
 
   patch -p1 < $startdir/log4cxx-0.10.0-missing_includes.patch
+  patch -p1 < $startdir/log4cxx-0.10.0-narrowing-fixes-from-upstream.patch
 
   ./configure --prefix=/usr --disable-static
   make
