@@ -70,3 +70,6 @@
 [submodule "aur4/tn40xx"]
 	path = aur4/tn40xx
 	url = https://aur@aur.archlinux.org/tn40xx.git
+[submodule "aur4/airflow-git"]
+	path = aur4/airflow-git
+	url = https://aur.archlinux.org/airflow-git.git/
