@@ -25,9 +25,6 @@
 [submodule "aur4/l1_logreg"]
 	path = aur4/l1_logreg
 	url = https://aur.archlinux.org/l1_logreg.git/
-[submodule "aur4/log4cxx"]
-	path = aur4/log4cxx
-	url = https://aur.archlinux.org/log4cxx.git/
 [submodule "aur4/mosek"]
 	path = aur4/mosek
 	url = https://aur.archlinux.org/mosek.git/
