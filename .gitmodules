@@ -10,9 +10,6 @@
 [submodule "aur4/docker-git"]
 	path = aur4/docker-git
 	url = https://aur.archlinux.org/docker-git.git/
-[submodule "aur4/dpkg"]
-	path = aur4/dpkg
-	url = https://aur.archlinux.org/dpkg.git/
 [submodule "aur4/duplicity-bzr"]
 	path = aur4/duplicity-bzr
 	url = https://aur.archlinux.org/duplicity-bzr.git/
