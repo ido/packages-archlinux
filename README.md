@@ -16,10 +16,6 @@ for purposes of submitting pull requests,
 and in [`aur4`](https://github.com/ido/packages-archlinux/tree/master/aur4)
 as submodules for ease of tracking.
 
-Unmaintained, old packages (e.g. that were disowned, orphaned, etc.) might
-still linger in the [`old`](https://github.com/ido/packages-archlinux/tree/master/old) directory,
-in case anyone wants to pick them up.
-
 Contributing
 ------------
 
