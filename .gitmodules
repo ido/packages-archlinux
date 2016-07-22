@@ -13,9 +13,6 @@
 [submodule "aur4/duplicity-bzr"]
 	path = aur4/duplicity-bzr
 	url = https://aur.archlinux.org/duplicity-bzr.git/
-[submodule "aur4/ejabberd-git"]
-	path = aur4/ejabberd-git
-	url = https://aur.archlinux.org/ejabberd-git.git/
 [submodule "aur4/fix8"]
 	path = aur4/fix8
 	url = https://aur.archlinux.org/fix8.git/
