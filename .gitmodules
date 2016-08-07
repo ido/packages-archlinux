@@ -67,3 +67,6 @@
 [submodule "aur4/airflow"]
 	path = aur4/airflow
 	url = https://aur.archlinux.org/airflow.git/
+[submodule "aur4/aksusbd"]
+	path = aur4/aksusbd
+	url = https://aur.archlinux.org/aksusbd.git/
