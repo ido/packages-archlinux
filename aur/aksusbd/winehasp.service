@@ -1,0 +1,23 @@
+[Unit]
+Description=AKSUSB winehasp daemon
+After=aksusbd.service
+Requires=aksusbd.service
+BindsTo=aksusbd.service
+PartOf=aksusbd.service
+
+[Service]
+Type=forking
+StandardOutput=tty
+TimeoutStopSec=10s
+
+PrivateTmp=true
+PrivateNetwork=true
+ProtectSystem=full
+ProtectHome=true
+
+ExecStart=/usr/bin/winehasp
+
+[Install]
+WantedBy=multi-user.target
+Also=aksusbd.service
+Also=hasplmd.service
