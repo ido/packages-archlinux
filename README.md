@@ -1,7 +1,7 @@
 packages-archlinux
 ==================
 
-ArchLinux packages in AUR.
+Mirror of ArchLinux packages I maintain in AUR.
 https://aur.archlinux.org/packages/?K=ido&SeB=m
 
 AUR Packages
@@ -10,8 +10,9 @@ AUR Packages
 Now that AUR 4.x is available, this repository is just for tracking issues 
 and pull requests to AUR packages that I maintain or co-maintain.
 
-All packages that I maintain that are available on AUR are located in
-[`aur`](https://github.com/ido/packages-archlinux/tree/master/aur) as copies
+Each package that I maintain in AUR has its own branch named `aur/<PKGNAME>`,
+for example:
+[`aur/openonload`](https://github.com/ido/packages-archlinux/tree/aur/openonload/) as copies
 for purposes of submitting pull requests,
 and in [`aur4`](https://github.com/ido/packages-archlinux/tree/master/aur4)
 as submodules for ease of tracking.
