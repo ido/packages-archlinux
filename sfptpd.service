@@ -7,9 +7,8 @@ After=openonload.service
 [Service]
 Type=forking
 PrivateTmp=true
-EnvironmentFile=-/etc/default/sfptpd
 
-ExecStart=/usr/bin/sfptpd -f /etc/sfptpd.cfg
+ExecStart=/usr/bin/sfptpd -f /usr/share/doc/sfptpd/config/default.cfg
 ExecStop=/usr/bin/killall -SIGTERM /usr/bin/sfptpd
 
 [Install]

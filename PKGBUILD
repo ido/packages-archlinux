@@ -8,7 +8,7 @@
 
 pkgname='sfptpd'
 pkgdesc="Solarflare Enhanced PTP daemon."
-pkgver='2.2.4.70'
+pkgver='2.4.0.1000'
 pkgrel=1
 arch=('x86_64')
 url='http://www.solarflare.com/'
@@ -16,12 +16,12 @@ license=('custom')
 depends=('openonload')
 makedepends=()
 options=('!libtool' '!strip' '!makeflags' '!buildflags' 'staticlibs')
-source=("http://127.0.0.1/SF-108910-LS-11_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit_binary_tarball.tgz"
-        "http://127.0.0.1/SF-108910-LS-11_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit_binary_tarball.rl.txt"
-        'sfptpd.service')
-sha512sums=('69b71afff6dab4dab9f7de8fc02431cea95853a68b237876f6d63deb4bcf023d238648bff8162b4d9af57847b1be8f3bcf6bf49cbdaf8b9537a568d2568c6ad9'
-            'b61a0ecc9af7ed6c880c436154b872c480623accd8a006c6dd29e3dd53e260a4ec947e6b4adc17b9bff23d409433498a63ec05a5f1396781e15e100338ebdb11'
-            'b3dcb610b5298ea68de03f4cde1ad52063176754da756b4b328955be0035a760aef59b72d0f5f92313f524a76d48551378ffcd93e8fd63fbd4b254f417ea7561')
+source=("SF-108910-LS-12_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit_binary_tarball.tgz"
+        "release note.txt"
+	'sfptpd.service')
+sha512sums=('0636afcdd68a246aa86d3289f70a436dcbc9b11150bce3d608bc76ffdb7df314821e12aa125ab066155b9b8ef8046387cbf188351cb57f84d2168aa47432ca1a'
+            'cc4849977faf2e012f03c203f6a4a10e06c34f3b18986afc69217d82598765b86f7e5c28d49018d15bab799cd8c90707f629cce79e4779533d23ce0ed2a7d64c'
+	    'a5d6d249907df34e22ac4c75c3410248cbc715b65ef01722b72e3a1a0fa11007ef71fb1482fee3c17bb68f46010dee47db18d6513f58cbb80595ba4caa1db108')
 
 package() {
   # Systemd service:
@@ -35,14 +35,14 @@ package() {
 
   # Documentation:
   install -dm755                  "${pkgdir}/usr/share/doc/${pkgname}"
-  RLN="SF-108910-LS-11_Solarflare_Enhanced_PTP_Daemon_sfptpd_-_64_bit_binary_tarball.rl.txt"
+  RLN="release note.txt"
   install -m644 "${srcdir}/${RLN}" "${pkgdir}/usr/share/doc/${pkgname}"
-  install -m644 COPYRIGHT         "${pkgdir}/usr/share/doc/${pkgname}"
+  install -m644 PTPD2_COPYRIGHT         "${pkgdir}/usr/share/doc/${pkgname}"
   install -dm755                  "${pkgdir}/usr/share/doc/${pkgname}/config"
   install -m644 config/*          "${pkgdir}/usr/share/doc/${pkgname}/config"
 
   # Install LICENSE file:
   install -dm755                  "${pkgdir}/usr/share/licenses/${pkgname}"
-  ln -s "/usr/share/doc/${pkgname}/COPYRIGHT" \
+  ln -s "/usr/share/doc/${pkgname}/PTPD2_COPYRIGHT" \
       "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
