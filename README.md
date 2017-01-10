@@ -7,6 +7,3 @@ Solarflare PTPd Arch package v 2.4.0.1000
 
 2. Run 'makepkg -s' and 'pacman -U' as usual
 
-Adam May
-<adammay@gmail.com>
-
