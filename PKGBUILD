@@ -11,7 +11,7 @@
 
 pkgname='stanc'
 pkgdesc="A package for obtaining Bayesian inference using the No-U-Turn sampler, a variant of Hamiltonian Monte Carlo."
-pkgver=2.13.1
+pkgver=2.18.1
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://mc-stan.org/'
@@ -20,7 +20,7 @@ depends=('gcc-libs')
 makedepends=('texlive-bin' 'texlive-core' 'doxygen')
 options=('!libtool' '!strip' '!makeflags')
 source=(https://github.com/stan-dev/cmdstan/releases/download/v$pkgver/cmdstan-$pkgver.tar.gz)
-sha512sums=('a2b0698a28e568366876d34a052b9edb58a69e2b8d8bed9d54dcfbf786bd0219b19ad57e66982e54bc7714494d9577cad4253f832e5e3aa05af6adfc62c2ef24')
+sha512sums=('20764f87e6fbc6359bc360a7316ec40773cdc4eb215f2740528830eaee765de71f8041af13235e8c64e25cb791606a739b990962469cd36ef4a87406e8d49645')
 
 prepare() {
   cd "${srcdir}/cmdstan-${pkgver}"
@@ -30,6 +30,9 @@ prepare() {
 build() {
   cd "${srcdir}/cmdstan-${pkgver}"
  
+  # Remove the line to avoid "fatal error: 'string' file not found"
+  # http://discourse.mc-stan.org/t/error-in-compiling-cmdstan-cstddef-string-not-found/1874
+  sed -i 's/CXXFLAGS += -stdlib=libc++//' stan/lib/stan_math/make/detect_cc
   make bin/stanc
   make bin/print
   
@@ -56,17 +59,11 @@ package() {
   install -m644 bin/libstanc.a     "${pkgdir}/usr/lib"
 
   install -dm755                  "${pkgdir}/usr/include/stan"
-  cd "stan_${pkgver}/src"
+  cd "stan/src"
   find . -iregex './stan.*.hpp$' -type f -exec install -DTm644 "{}" "${pkgdir}/usr/include/{}" \;
   cd ../.. 
  
   # Install LICENSE file:
   install -dm755                  "${pkgdir}/usr/share/licenses/stan"
-  cp -r "stan_${pkgver}/licenses/." "${pkgdir}/usr/share/licenses/stan/."
-
-  # Install documentation:
-  install -dm755                  "${pkgdir}/usr/share/doc/stan/api"
-  install -m644 doc/*.pdf \
-                                  "${pkgdir}/usr/share/doc/stan"
-  cp -r "stan_${pkgver}/doc/api/." "${pkgdir}/usr/share/doc/stan/api/."
+  cp -r "stan/licenses/." "${pkgdir}/usr/share/licenses/stan/."
 }
