@@ -11,16 +11,20 @@
 
 pkgname='stanc'
 pkgdesc="A package for obtaining Bayesian inference using the No-U-Turn sampler, a variant of Hamiltonian Monte Carlo."
-pkgver=2.18.1
+pkgver=2.29.2
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://mc-stan.org/'
 license=('BSD')
 depends=('gcc-libs')
-makedepends=('texlive-bin' 'texlive-core' 'doxygen')
-options=('!libtool' '!strip' '!makeflags')
+makedepends=('texlive-bin' 'texlive-core' 'doxygen' 
+# needed if compile against system library
+
+# 'gtest' 'benchmark' 'sundials' 'boost' 'eigen' 'tbb' 'stanmath'
+# 'python-cpplint' 'opencl-headers' 'rapidjson' 'cli11'
+)
 source=(https://github.com/stan-dev/cmdstan/releases/download/v$pkgver/cmdstan-$pkgver.tar.gz)
-sha512sums=('20764f87e6fbc6359bc360a7316ec40773cdc4eb215f2740528830eaee765de71f8041af13235e8c64e25cb791606a739b990962469cd36ef4a87406e8d49645')
+sha512sums=('8b1485c8832fa283307b87c491f259432a7284f4975d21e5424f3b1be0ca9bf1012443c0be1b01b09aecbff40f3d1bb6031abe3bb89d8e64380f61ed9d1ffec3')
 
 prepare() {
   cd "${srcdir}/cmdstan-${pkgver}"
@@ -29,12 +33,7 @@ prepare() {
 
 build() {
   cd "${srcdir}/cmdstan-${pkgver}"
- 
-  # Remove the line to avoid "fatal error: 'string' file not found"
-  # http://discourse.mc-stan.org/t/error-in-compiling-cmdstan-cstddef-string-not-found/1874
-  sed -i 's/CXXFLAGS += -stdlib=libc++//' stan/lib/stan_math/make/detect_cc
-  make bin/stanc
-  make bin/print
+  make build
   
 }
 
@@ -52,11 +51,9 @@ package() {
   # Install binaries:
   install -dm755                  "${pkgdir}/usr/bin"
   install -m755 bin/stanc         "${pkgdir}/usr/bin"
-  install -Tm755 bin/print         "${pkgdir}/usr/bin/stanc-print"
-
-  # Install static library:
-  install -dm755                  "${pkgdir}/usr/lib"
-  install -m644 bin/libstanc.a     "${pkgdir}/usr/lib"
+  install -Tm755 bin/diagnose      "${pkgdir}/usr/bin/standiagnose"
+  install -Tm755 bin/print         "${pkgdir}/usr/bin/stanprint"
+  install -Tm755 bin/stansummary   "${pkgdir}/usr/bin/stansummary"
 
   install -dm755                  "${pkgdir}/usr/include/stan"
   cd "stan/src"
